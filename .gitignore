@@ -1,0 +1,5 @@
+.ipynb_checkpoints/
+__pycache__/
+*~
+arem_time_domain_features.csv
+arem_feature_std_bootstrap_ci.csv
