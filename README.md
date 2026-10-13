@@ -1,5 +1,8 @@
 # DSCI 552 HW3 - Activity Recognition (AReM)
 
+**Name:** Om Bhatt<br>
+**USC ID:** 7536194801
+
 Time series classification part 1: feature creation/extraction on the UCI AReM dataset.
 
 A person wore wireless sensors on the chest and both ankles while doing 7 activities
@@ -7,8 +10,14 @@ A person wore wireless sensors on the chest and both ankles while doing 7 activi
 Each `datasetN.csv` file is one instance: 6 time series of 480 values
 (avg_rss12, var_rss12, avg_rss13, var_rss13, avg_rss23, var_rss23). There are 88 instances.
 
-All the work is in [Last_First_HW3.ipynb](Last_First_HW3.ipynb), which is the notebook to grade. It's already run, so the outputs and plots show up on GitHub.
-[Last_First_HW3.html](Last_First_HW3.html) is the same notebook exported to HTML.
+All the work is in [notebooks/bhatt_om_hw3.ipynb](notebooks/bhatt_om_hw3.ipynb), which is the notebook to grade. It's already run, so the outputs and plots show up on GitHub.
+[notebooks/bhatt_om_hw3.html](notebooks/bhatt_om_hw3.html) is the same notebook exported to HTML.
+
+## Contents
+
+- `notebooks/bhatt_om_hw3.ipynb` - main assignment notebook (+ HTML export)
+- `data/AReM/` - dataset, the 7 activity folders
+- `output/` - CSV outputs from the notebook: the 42-feature table (`arem_time_domain_features.csv`) and the std + 90% bootstrap CI of each feature (`arem_feature_std_bootstrap_ci.csv`)
 
 ## What's in the notebook
 
@@ -54,10 +63,10 @@ Some things I found:
 
 ```
 pip install -r requirements.txt
-jupyter notebook Last_First_HW3.ipynb
+jupyter notebook notebooks/bhatt_om_hw3.ipynb
 ```
 
-The notebook reads the 7 activity folders from the same folder and saves the feature table and the bootstrap CIs to CSV files.
+The notebook reads the data from `data/AReM/` and saves the CSV outputs to `output/` (paths are relative to the `notebooks/` folder).
 
 ## Data
 

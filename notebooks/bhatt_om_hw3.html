@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Last_First_HW3</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>bhatt_om_hw3</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7802,7 +7802,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<center><h1>Last_First_HW3</h1></center>
+<center><h1>Bhatt_Om_HW3</h1></center>
 <br/>
 <br/>
 </div>
@@ -7831,7 +7831,7 @@ USC ID: 7536194801</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="1.-Time-Series-Classification-Part-1:-Feature-Creation/Extraction">1. Time Series Classification Part 1: Feature Creation/Extraction<a class="anchor-link" href="#1.-Time-Series-Classification-Part-1:-Feature-Creation/Extraction">¶</a></h2><p><strong>Data.</strong> AReM (Activity Recognition system based on Multisensor data fusion), UCI Machine Learning Repository. Sensors on the chest and both ankles recorded a person performing 7 activities: <code>bending1</code>, <code>bending2</code>, <code>cycling</code>, <code>lying</code>, <code>sitting</code>, <code>standing</code>, <code>walking</code>. Each <code>datasetN.csv</code> file is one instance: a 2-minute recording with 6 time series of 480 values each (<code>avg_rss12, var_rss12, avg_rss13, var_rss13, avg_rss23, var_rss23</code>, the mean and variance of the received signal strength between each pair of sensors). There are 88 instances in total.</p>
-<p>The 7 activity folders are expected next to this notebook (<code>DATA_DIR</code>).</p>
+<p>The 7 activity folders are in <code>data/AReM/</code> (<code>DATA_DIR</code>), and the CSV outputs are saved to <code>output/</code> (<code>OUT_DIR</code>).</p>
 </div>
 </div>
 </div>
@@ -7852,7 +7852,8 @@ USC ID: 7536194801</p>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_columns'</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.width'</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">'.'</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">'../data/AReM'</span>
+<span class="n">OUT_DIR</span> <span class="o">=</span> <span class="s1">'../output'</span>
 <span class="n">ACTIVITIES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'bending1'</span><span class="p">,</span><span class="s1">'bending2'</span><span class="p">,</span><span class="s1">'cycling'</span><span class="p">,</span><span class="s1">'lying'</span><span class="p">,</span><span class="s1">'sitting'</span><span class="p">,</span><span class="s1">'standing'</span><span class="p">,</span><span class="s1">'walking'</span><span class="p">]</span>
 <span class="n">SERIES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'avg_rss12'</span><span class="p">,</span> <span class="s1">'var_rss12'</span><span class="p">,</span> <span class="s1">'avg_rss13'</span><span class="p">,</span> <span class="s1">'var_rss13'</span><span class="p">,</span> <span class="s1">'avg_rss23'</span><span class="p">,</span> <span class="s1">'var_rss23'</span><span class="p">]</span>
 <span class="n">SEED</span> <span class="o">=</span> <span class="mi">42</span>
@@ -8254,7 +8255,7 @@ Name: count, dtype: int64
 <span class="n">features</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Instance'</span>
 <span class="n">FEATURE_COLS</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">STATS</span><span class="p">]</span>
 
-<span class="n">features</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'arem_time_domain_features.csv'</span><span class="p">)</span>
+<span class="n">features</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUT_DIR</span><span class="p">,</span> <span class="s1">'arem_time_domain_features.csv'</span><span class="p">))</span>
 <span class="n">features</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8917,7 +8918,7 @@ Name: count, dtype: int64
         <span class="s1">'CI_90_lower'</span><span class="p">:</span> <span class="n">lo</span><span class="p">,</span> <span class="s1">'CI_90_upper'</span><span class="p">:</span> <span class="n">hi</span><span class="p">})</span>
 
 <span class="n">std_ci</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ci_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'feature'</span><span class="p">)</span>
-<span class="n">std_ci</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'arem_feature_std_bootstrap_ci.csv'</span><span class="p">)</span>
+<span class="n">std_ci</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUT_DIR</span><span class="p">,</span> <span class="s1">'arem_feature_std_bootstrap_ci.csv'</span><span class="p">))</span>
 <span class="n">std_ci</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
